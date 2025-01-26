@@ -1,0 +1,7 @@
+This is a larger test file
+with multiple paragraphs
+to test the chunking functionality
+
+Second paragraph with some
+more content to ensure
+proper splitting behavior
