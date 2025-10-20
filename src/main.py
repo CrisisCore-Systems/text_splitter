@@ -18,7 +18,7 @@ def setup_logging():
 def parse_args():
     """
     Parse command-line arguments.
-    
+
     Returns:
         argparse.Namespace: Parsed command-line arguments.
     """
@@ -26,21 +26,21 @@ def parse_args():
         description='CrisisCore-Systems Text Splitting Tool',
         formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument('file', help='Input file path')
-    parser.add_argument('-s', '--size', type=int, default=1024*1024,
-                       help='Maximum chunk size in bytes (default: 1MB)')
+    parser.add_argument('-s', '--size', type=int, default=1024 * 1024,
+                        help='Maximum chunk size in bytes (default: 1MB)')
     return parser.parse_args()
 
 
 def main():
     """
     Main entry point for the command-line interface.
-    
+
     Returns:
         int: Exit code (0 for success, 1 for error).
     """
     setup_logging()
     logger = logging.getLogger(__name__)
-    
+
     try:
         args = parse_args()
         if not os.path.exists(args.file):
