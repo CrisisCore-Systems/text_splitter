@@ -1,4 +1,4 @@
-from text_splitter import CrisisCoreSplitter
+from src.text_splitter import CrisisCoreSplitter
 import argparse
 import sys
 import os

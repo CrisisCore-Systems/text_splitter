@@ -1,7 +1,11 @@
-﻿class CrisisCoreSplitter:
+import os
+
+class CrisisCoreSplitter:
     def __init__(self, input_file, max_chunk_size=1024*1024):
         if max_chunk_size <= 0:
             raise ValueError('Chunk size must be positive')
+        if not os.path.exists(input_file):
+            raise FileNotFoundError(f'Input file not found: {input_file}')
         self.input_file = input_file
         self.max_chunk_size = max_chunk_size
         self._print_banner()

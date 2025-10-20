@@ -16,7 +16,8 @@ class TestCrisisCoreSplitter(unittest.TestCase):
         # Clean up test files
         for file in self.test_dir.glob('*.txt'):
             file.unlink()
-        self.test_dir.rmdir()
+        if self.test_dir.exists():
+            self.test_dir.rmdir()
         
     def test_initialization(self):
         splitter = CrisisCoreSplitter(str(self.test_file))

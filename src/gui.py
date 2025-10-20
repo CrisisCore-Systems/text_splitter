@@ -1,5 +1,6 @@
-﻿import PySimpleGUI as sg
+import PySimpleGUI as sg
 import os
+from src.text_splitter import CrisisCoreSplitter
 
 class CrisisCoreGUI:
     def __init__(self):
