@@ -1,4 +1,4 @@
-﻿import unittest
+import unittest
 import os
 from src.text_splitter import CrisisCoreSplitter
 from pathlib import Path
