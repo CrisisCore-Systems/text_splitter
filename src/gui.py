@@ -1,16 +1,38 @@
-﻿import PySimpleGUI as sg
+"""Graphical User Interface for the CrisisCore Text Splitter."""
+import PySimpleGUI as sg
 import os
+import logging
+from src.text_splitter import CrisisCoreSplitter
+
+logger = logging.getLogger(__name__)
+
 
 class CrisisCoreGUI:
+    """
+    GUI application for the CrisisCore Text Splitter.
+
+    Provides a user-friendly interface for splitting large text files into
+    smaller chunks with configurable chunk sizes.
+    """
+
     def __init__(self):
+        """Initialize the GUI with default theme and create the main window."""
         sg.theme('DarkBlue')
         self.window = self._create_window()
-        
+
     def _create_window(self):
+        """
+        Create and configure the main application window.
+
+        Returns:
+            sg.Window: Configured PySimpleGUI window object.
+        """
         layout = [
-            [sg.Text('CrisisCore-Systems Enterprise Suite', font=('Helvetica', 20), justification='center')],
+            [sg.Text('CrisisCore-Systems Enterprise Suite',
+                     font=('Helvetica', 20),
+                     justification='center')],
             [sg.HSep()],
-            [sg.Text('Input File:', size=(12, 1)), 
+            [sg.Text('Input File:', size=(12, 1)),
              sg.Input(key='-FILE-', size=(40, 1)),
              sg.FileBrowse(file_types=(('Text Files', '*.txt'), ('All Files', '*.*')))],
             [sg.Text('Chunk Size (KB):', size=(12, 1)),
@@ -23,43 +45,57 @@ class CrisisCoreGUI:
              sg.Button('Clear', size=(10, 1)),
              sg.Button('Exit', size=(10, 1))]
         ]
-        
-        return sg.Window('CrisisCore-Systems Enterprise v1.0',
-                        layout,
-                        finalize=True,
-                        size=(800, 600))
-                        
+
+        return sg.Window('CrisisCore-Systems Enterprise v0.1.0-alpha',
+                         layout,
+                         finalize=True,
+                         size=(800, 600))
+
     def run(self):
+        """
+        Run the main event loop for the GUI application.
+
+        Handles user interactions including file selection, processing,
+        and status updates. Continues until the user closes the window
+        or clicks the Exit button.
+        """
         while True:
             event, values = self.window.read()
-            
+
             if event in (sg.WIN_CLOSED, 'Exit'):
                 break
-                
+
             if event == 'Process':
                 try:
                     input_file = values['-FILE-']
                     chunk_size = int(values['-SIZE-']) * 1024
-                    
+
                     if not os.path.exists(input_file):
                         sg.popup_error('Error: Input file not found')
                         continue
-                        
+
                     splitter = CrisisCoreSplitter(input_file, chunk_size)
                     self.window['-PROGRESS-'].update(50)
                     splitter.split_file()
                     self.window['-PROGRESS-'].update(100)
-                    
+
                 except Exception as e:
+                    logger.error(f'Processing error: {str(e)}')
                     sg.popup_error(f'Error: {str(e)}')
                     self.window['-PROGRESS-'].update(0)
-                    
+
             if event == 'Clear':
                 self.window['-OUTPUT-'].update('')
                 self.window['-PROGRESS-'].update(0)
-                
+
         self.window.close()
 
+
 if __name__ == '__main__':
+    # Configure logging to show in GUI output
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(message)s'
+    )
     gui = CrisisCoreGUI()
     gui.run()

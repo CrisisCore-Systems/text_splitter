@@ -33,3 +33,14 @@ ENV/
 # Logs
 logs/
 *.log
+
+# Test outputs
+*.cc[0-9]*.txt
+split_output/
+split_docs/
+test_data/
+
+# Coverage
+.coverage
+htmlcov/
+.pytest_cache/
