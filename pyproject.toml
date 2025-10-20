@@ -1,1 +1,48 @@
-[build-system]\nrequires = ["setuptools>=61.0", "wheel"]\nbuild-backend = "setuptools.build_meta"\n\n[project]\nname = "crisiscore-text-splitter"\nversion = "0.1.0"\ndescription = "Intelligent text file splitting utility with GUI and CLI interfaces"\nreadme = "README.md"\nauthors = [{name = "CrisisCore-Systems", email = "Crisiscore.systems@proton.me"}]\nlicense = {text = "MIT"}\nclassifiers = [\n    "Development Status :: 3 - Alpha",\n    "Intended Audience :: Developers",\n    "License :: OSI Approved :: MIT License",\n    "Operating System :: OS Independent",\n    "Programming Language :: Python :: 3",\n    "Programming Language :: Python :: 3.8",\n    "Programming Language :: Python :: 3.9",\n    "Programming Language :: Python :: 3.10",\n    "Programming Language :: Python :: 3.11",\n    "Topic :: Text Processing",\n    "Topic :: Utilities",\n]\nrequires-python = ">=3.8"\ndependencies = [\n    "PySimpleGUI>=4.60.0",\n]\n\n[project.optional-dependencies]\ndev = [\n    "pytest>=7.4.0",\n    "pytest-cov>=4.1.0",\n]\n\n[project.urls]\nHomepage = "https://github.com/CrisisCore-Systems/text_splitter"\nIssues = "https://github.com/CrisisCore-Systems/text_splitter/issues"\n\n[project.scripts]\ntext-splitter = "src.main:main"\n\n[tool.pytest.ini_options]\ntestpaths = ["tests"]\npython_files = ["test_*.py"]\npython_classes = ["Test*"]\npython_functions = ["test_*"]\naddopts = "-v --cov=src --cov-report=term-missing"\n
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "crisiscore-text-splitter"
+version = "0.1.0"
+description = "Intelligent text file splitting utility with GUI and CLI interfaces"
+readme = "README.md"
+authors = [{name = "CrisisCore-Systems", email = "Crisiscore.systems@proton.me"}]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Text Processing",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "PySimpleGUI>=4.60.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/CrisisCore-Systems/text_splitter"
+Issues = "https://github.com/CrisisCore-Systems/text_splitter/issues"
+
+[project.scripts]
+text-splitter = "src.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --cov=src --cov-report=term-missing"
